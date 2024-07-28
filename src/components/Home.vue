@@ -1,9 +1,8 @@
 <template>
     <v-navigation-drawer permanent>
         <v-list>
-            <v-list-item v-for="(user, index) in users" :key="index" @click="onClick(user)">
-                <v-list-item-title>{{ user.name }}</v-list-item-title>
-                <v-list-item-subtitle>{{ user.message }}</v-list-item-subtitle>
+            <v-list-item v-for="(business, index) in businesses" :key="index" @click="onClick(business)">
+                <v-list-item-title>{{ business.name }}</v-list-item-title>
             </v-list-item>
         </v-list>
     </v-navigation-drawer>
@@ -20,7 +19,7 @@
     </v-container>
     <v-container>
         <v-app-bar v-if="selectedUser">
-            <v-app-bar-title>{{ selectedUser?.name }}</v-app-bar-title>
+            <v-app-bar-title>{{ selectedUser?.name ?? 'asd' }}</v-app-bar-title>
         </v-app-bar>
         <div>
 
@@ -38,13 +37,10 @@ import { useBusinessStore } from '../store/business';
 import Info from '../service/Info';
 import { storeToRefs } from 'pinia';
 
-const selectedUser = ref<{
-  name: string;
-  message: string;
-} | null>(null);
+const selectedUser = ref<any>(null)
 
 const businessStore = useBusinessStore();
-const {messages} = storeToRefs(businessStore);
+const {messages, businesses} = storeToRefs(businessStore);
 const sentMessage = ref(false);
 const messagesMock = ref<{user: string, message: string}[]>([]);
 
@@ -56,7 +52,7 @@ const users = ref([
   { name: 'Bob Brown', message: "Let's catch up over coffee." }
 ]);
 
-const onClick = (user: { name: string; message: string }) => {
+const onClick = (user: any) => {
   selectedUser.value = user;
 };
 

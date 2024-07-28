@@ -12,7 +12,7 @@
         <v-menu activator="parent">
           <v-list>
             <v-list-item prepend-icon="mdi-brain">Analytics</v-list-item>
-            <v-list-item prepend-icon="mdi-logout">Logout</v-list-item>
+            <v-list-item @click="logout" prepend-icon="mdi-logout">Logout</v-list-item>
           </v-list>
         </v-menu>
       </v-btn>
@@ -32,6 +32,7 @@ import { AyobaAPI } from './service/AyobaAPI';
 import { useAuthStore } from './store/auth';
 import { useBusinessStore } from './store/business';
 
+
 const router = useRouter();
 const authStore = useAuthStore(); 
 const businessStore = useBusinessStore();
@@ -47,7 +48,6 @@ const logout = async() => {
 
 onMounted(async () => {
 
-  
   const expiredTime = localStorage.getItem('expire');
   if (!expiredTime || new Date(expiredTime).getUTCMilliseconds() > new Date().getUTCMilliseconds()) {
     localStorage.clear();
@@ -59,7 +59,9 @@ onMounted(async () => {
     AyobaAPI.headers = {
       Authorization: `${accessToken}`
     };
-    await businessStore.getTextMessages()
+    await businessStore.getTextMessages();
+    await businessStore.getAllBusinesses();
+    await businessStore.getAllMessages()
   }
   else {
     router.push({ name: 'login' })

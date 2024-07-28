@@ -29,7 +29,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '../store/auth';
 
-const { VITE_USERNAME: usernameEnv, VITE_PASSWORD: passwordEnv } = import.meta.env;
+
 
 const authStore = useAuthStore();
 const route = useRouter();
@@ -39,7 +39,7 @@ const password = ref('');
 const image = ref('/ayoba_logo.png')
 const usernameRules = [
     (v: any) => !!v || 'Username is required',
-    (v: any) => (v && v.length <= 10) || 'Username must be less than 10 characters',
+    (v: any) => (v && v.length > 3) || 'Username must be more than 3 characters',
 ];
 const passwordRules = [
     (v: any) => !!v || 'Password is required',
@@ -47,12 +47,12 @@ const passwordRules = [
 ];
 
 const login = async () => {
-    if (usernameEnv === '' || usernameEnv === '') {
+    if (username.value === '' || password.value === '') {       
         alert('Please fill in all fields');
         return;
     }
     try {
-        await authStore.login({ username: usernameEnv, password: passwordEnv });
+        await authStore.login({ username: username.value, password: password.value });
         route.push({name: 'home'});
     } catch (error) {
         console.error(error);
