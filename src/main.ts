@@ -27,6 +27,10 @@ const routes = [
 		name: 'chat',
 		path: '/chat',
 		component: ChatWindow
+	}, {
+		name: 'analytics',
+		path: '/analytics',
+		component: Analytics
 	}
 
 ]
@@ -50,6 +54,7 @@ const darkTheme: ThemeDefinition = {
 
 // Importing Pinia, a state management library.
 import {createPinia} from 'pinia';
+import Analytics from './components/Analytics.vue';
 
 
 // Creating a Vuetify instance with the defined theme, components, and directives.

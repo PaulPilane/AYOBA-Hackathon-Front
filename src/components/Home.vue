@@ -67,7 +67,7 @@ const sendMessage = async () => {
   }
 
   const message = {
-    msisdns: ['+27720479826'],
+    msisdns: ['+27720479826', '+27810673708'],
     message: {
       type: 'text',
       text: text.value,
