@@ -12,7 +12,7 @@
         <v-menu activator="parent">
           <v-list>
             <v-list-item prepend-icon="mdi-brain" :to="{name: `analytics`}">Analytics</v-list-item>
-            <v-list-item prepend-icon="mdi-logout">Logout</v-list-item>
+            <v-list-item prepend-icon="mdi-logout"@click="logout" >Logout</v-list-item>
           </v-list>
         </v-menu>
       </v-btn>
