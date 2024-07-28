@@ -11,8 +11,8 @@
         <v-icon size="large">mdi-cog</v-icon>
         <v-menu activator="parent">
           <v-list>
-            <v-list-item prepend-icon="mdi-brain">Analytics</v-list-item>
-            <v-list-item @click="logout" prepend-icon="mdi-logout">Logout</v-list-item>
+            <v-list-item prepend-icon="mdi-brain" :to="{name: `analytics`}">Analytics</v-list-item>
+            <v-list-item prepend-icon="mdi-logout">Logout</v-list-item>
           </v-list>
         </v-menu>
       </v-btn>
